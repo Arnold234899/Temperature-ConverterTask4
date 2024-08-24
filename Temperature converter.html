@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1f2a44, #3b5998);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .converter-container {
+            background: linear-gradient(145deg, #2a3b68, #3b5998);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            width: 400px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-size: 28px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        input[type="number"] {
+            padding: 15px;
+            width: 85%;
+            border: 2px solid #5a6fb8;
+            border-radius: 8px;
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        input[type="number"]::placeholder {
+            color: #aaa;
+            font-weight: 400;
+        }
+
+        select {
+            padding: 15px;
+            width: 90%;
+            border: 2px solid #5a6fb8;
+            border-radius: 8px;
+            background-color: #fff;
+            color: #333;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            background-color: #ff6b6b;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+        }
+
+        button:hover {
+            background-color: #ff8585;
+            transform: translateY(-3px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+
+        .result {
+            margin-top: 25px;
+            font-size: 20px;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .result:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="converter-container">
+        <h2>Temperature Converter</h2>
+        <div class="input-group">
+            <input type="number" id="temperature" placeholder="Type Temperature" />
+        </div>
+        <div class="input-group">
+            <select id="unit">
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+            </select>
+        </div>
+        <button onclick="convertTemperature()">Convert</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convertTemperature() {
+            var temp = document.getElementById('temperature').value;
+            var unit = document.getElementById('unit').value;
+            var result = document.getElementById('result');
+
+            if (temp === "") {
+                result.textContent = "Please enter a temperature value!";
+                return;
+            }
+
+            temp = parseFloat(temp);
+            var convertedTemp;
+
+            if (unit === "celsius") {
+                convertedTemp = (temp * 9/5) + 32;
+                result.textContent = `${temp}° Celsius is equal to ${convertedTemp.toFixed(2)}° Fahrenheit.`;
+            } else {
+                convertedTemp = (temp - 32) * 5/9;
+                result.textContent = `${temp}° Fahrenheit is equal to ${convertedTemp.toFixed(2)}° Celsius.`;
+            }
+        }
+    </script>
+</body>
+
+</html>
